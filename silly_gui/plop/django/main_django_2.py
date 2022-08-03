@@ -14,6 +14,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 PORT = 5051
 # =====================================================================
 # !!!! SET YOUR OWN PATH HERE !!!!
+# setting a virtual environment is prudent, but could work without
 env_path = os.path.join(BASE_DIR, "env/bin/activate")
 launch_command = f"""
 source {env_path}

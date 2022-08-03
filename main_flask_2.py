@@ -6,31 +6,23 @@ import os
 import silly_gui.gui as sgui
 import silly_gui.launchers as sgl
 
-
+from flaskapp import main as flask  # use your own names here
 
 # MUST be in your main executable, some paths will be relative to this.
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-# PORT = sgl.free_port(5050)  # bug: doesn't work with django, why ?
-PORT = 5051
+PORT = sgl.free_port()
 # =====================================================================
-# !!!! SET YOUR OWN PATH HERE !!!!
-# setting a virtual environment is prudent, but could work without
-env_path = os.path.join(BASE_DIR, "env/bin/activate")
-launch_command = f"""
-source {env_path}
-./djangoapp/manage.py runserver {PORT}
-"""
 
 
-# set the server launcher (here for django)
+# set the server launcher (here for flask)
 def launch_function():
-    os.system(launch_command)
+    flask.app.run(debug=False, port=PORT)
 
 
 # create the launcher object
 server_launcher = sgl.ServerLauncher(
     port=PORT,
-    home_page="",
+    home_page="/",
     launcher=launch_function)
 
 
@@ -45,7 +37,7 @@ def callback_function_2(*args):
 
 def open_default(*args):
     """Open the application in the default browser of the system"""
-    sgui.open_in_main_browser(port=PORT, home_page=server_launcher.home_page)
+    sgui.open_in_main_browser(port=PORT, home_page="/")
 
 
 # Building the main interface =========================================
@@ -57,7 +49,7 @@ def new_browser(*args):
     browser = sgui.SillyBrowser(
         base_dir=BASE_DIR,  # required for correct icon behaviour
         port=PORT,
-        home_page=server_launcher.home_page,
+        home_page="/",
         icon='sgIcon',
         is_main=False,  # closing a main widget closes the entire application
         )

@@ -21,5 +21,17 @@ Basicaly, when the app is launched, silly-gui runs the server needed
 by your web application localy and hidden, you can then show your app
 in a desktop window and/or the main browser of the user's system.
 
-The user's experience is similar as a 'electron' application, but there
+The user's experience is similar with an 'electron' application, but there
 it is python inside instead of JS.
+
+# Developpment notes
+
+## Flask
+Works fine as it is
+
+## Django
+Still experimental.
+Works, but it is prudent to include a virtual environment with all dependencies
+included.
+For some reason the free port detection doesn't work.
+(Why ? if you know the answer, i'd be glad to know and fix it)

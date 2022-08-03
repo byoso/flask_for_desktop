@@ -2,7 +2,15 @@
 # coding: utf-8
 
 from flamewok.cli import cli
+
 from silly_gui import __version__
+from silly_gui.plop.ploppers import (
+    plop_main_flask_1,
+    plop_main_flask_2,
+    plop_main_django_1,
+    plop_main_django_2,
+)
+
 
 documentation = """
 ---   Build your app in a few steps   ---
@@ -49,16 +57,19 @@ if __name__ == "__main__":
         "Make a local applications with the web framework of your choice",
         f"Version: {__version__}",
         "",
-        "HELP",
+        "_"*80,
+        "   HELP",
         ("-h", cli.help, "display this help"),
         ("--help", cli.help, "idem"),
         ("", cli.help, "idem"),
-        "PLOP (provides a local silly_gui_main file)",
-        ("plop flask", todo, "get the file for flask"),
-        ("plop flask mini", todo, "get the minimal file for flask"),
-        ("plop django", todo, "get the file for django"),
-        ("plop django mini", todo, "get the minimal file for django"),
+        "_"*80,
+        "   PLOP - provides a silly_gui_main file in the working directory",
+        "* PLOP for FLASK",
+        ("plop flask 1", plop_main_flask_1, "single window interface"),
+        ("plop flask 2", plop_main_flask_2, "customizable interface"),
+        "* PLOP for DJANGO (experimental, you should not trust it)",
+        ("plop django 1", plop_main_django_1, "single window interface"),
+        ("plop django 2", plop_main_django_2, "customizable interface"),
         "DOCUMENTATION",
         ("tip", tip, "a minute to read a tip, houres saved"),
-
     )
