@@ -1,0 +1,7 @@
+env/
+__pycache__/
+*.pyc
+ignore_*
+flaskapp/
+djangoapp/
+*.sqlite3
