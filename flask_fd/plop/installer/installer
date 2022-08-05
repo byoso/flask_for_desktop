@@ -32,7 +32,7 @@ NAME = "MyFlaskForDesktopApp"
 DESCRIPTION = "A short description"
 # The main executable file of the application
 # The path is relative to this directory (BASE_DIR defined below)
-EXECUTABLE = "main_flask_fd_1.py"
+EXECUTABLE = "main_flask_fd_2.py"
 # The icon that your system will use (optionnal, but so much better)
 # The path is relative to this directory (BASE_DIR defined below)
 ICON = "FlaskFdIcon"
@@ -123,7 +123,7 @@ def pip_install_dependencies():
 
 dependencies = [
     'geninstaller>=1.1.1',
-    'flask-fd',
+    'flask-fd>=1.0.0',
 ]
 try:
     pkg_resources.require(dependencies)
