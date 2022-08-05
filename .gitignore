@@ -5,3 +5,7 @@ ignore_*
 flaskapp/
 *.sqlite3
 TODO.txt
+build/
+dist/
+flask_fd.egg-info/
+flask_fd/helpers.py
