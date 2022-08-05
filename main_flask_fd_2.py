@@ -15,11 +15,11 @@ import flask_fd.launchers as fgl
 
 from flaskapp import main as flask_app  # use your own names here
 
+
+# =====================================================================
 # MUST be in your main executable, some paths will be relative to this.
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 PORT = fgl.free_port()
-# =====================================================================
-
 
 # set the server launcher (here for flask)
 def launch_function():
@@ -36,7 +36,9 @@ server_launcher = fgl.ServerLauncher(
 # Here are some callbacks examples =====================================
 # called from the indicator in the systray
 def callback_button(*item):
-    print(f"{item[0].data}")
+    text = f"{item[0].data}"
+    print(text)
+    os.system(f"notify-send {text}")
 
 
 def open_default(*item):
@@ -46,18 +48,31 @@ def open_default(*item):
 
 # Building the main interface =========================================
 
-# Browser
+# Main Window
+def new_window(*item):
+    params = {
+        # Minimum settings
+        'title': "My new app",
+        'base_dir': BASE_DIR,  # do not change this
+        'port': PORT,  # do not change this
+        'server_launcher': None,  # None or server_launcher
+        'home_page': "/",
+        'icon': 'FlaskFdIcon',
+        'is_main': True,  # closing the window closes the entire application
+        # If the window has a header bar:
+        'header_bar': True,
+        'subtitle': "Your flask app's window",
+        'buttons': [
+            # comment those you don't want, change the order as you like
+            'hb_home',
+            'hb_refresh',
+            'hb_previous',
+            'hb_next',
+            'hb_find',
+        ]
+    }
 
-def new_browser(*item):
-    """Creates a browser"""
-    browser = fgui.SillyBrowser(
-        base_dir=BASE_DIR,  # required for correct icon behaviour
-        port=PORT,
-        home_page="/",
-        icon='FlaskFdIcon',
-        is_main=False,  # closing a main widget closes the entire application
-        )
-    return browser
+    return fgui.window_builder(**params)
 
 
 # Indicator
@@ -68,14 +83,13 @@ def new_indicator():
         icon='FlaskFdIcon',  # required
         label='label example',  # str or None
         menu_items=[
-            # ("main window", main_window),
-            ("open application", new_browser),
+            ("open application", new_window),
             ("open in browser", open_default),
             ("Function 1", callback_button, ["add any kind of data here"]),
             ("Function 2", callback_button, {"if you": "whant to"}),
             "_separator",
         ],
-        # closing a main widget closes the entire application and server:
+        # closing the indicator closes the entire application and server:
         is_main=True,
         # set the server launcher in a single main widget, only once:
         server_launcher=server_launcher
@@ -83,9 +97,7 @@ def new_indicator():
     return indicator
 
 
-# open_default()  # uncomment to show the app in the default browser
-
-# new_browser()  # uncomment to show the main window on launch
+new_window()
 
 # create the indicator
 # it will also launches the server as we defined the server_launcher

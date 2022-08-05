@@ -5,68 +5,30 @@ from threading import Thread
 import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk as gtk
+from gi.repository import Gdk as gdk
 gi.require_version('WebKit2', '4.0')
 from gi.repository import WebKit2 as wk
+
+from flask_fd.gui.web import SillyWebView
+from flask_fd.gui.header_bar import SillyHeaderBar
 
 
 main = gtk.main
 main_quit = gtk.main_quit
 
 
-class Window(gtk.Window):
+class SillyBrowser(gtk.Window):
     """gtk.Window doc:
     http://lazka.github.io/pgi-docs/index.html#gtk-3.0/classes/Window.html#gtk.Window
     """
     def __init__(
-            self, title="title",
-            subtitle="",
-            icon='sgIcon',  # png without ".png" extention
-            header_bar=True,
-            is_main=True,
-            show=True,
-            base_dir=None,
-            *args,
-            **kwargs,
-            ):
-
-        gtk.Window.__init__(self)
-        self.set_size_request(800, 600)
-        self.scroll = gtk.ScrolledWindow()
-        self.add(self.scroll)
-        self.viewport = gtk.Viewport()
-        self.scroll.add(self.viewport)
-        self.main_box = gtk.VBox()
-        self.viewport.add(self.main_box)
-        # Header Bar
-        if header_bar:
-            self.header_bar = gtk.HeaderBar()
-            self.header_bar.set_show_close_button(True)
-            self.header_bar.set_title(title)
-            self.header_bar.set_subtitle(subtitle)
-            self.set_titlebar(self.header_bar)
-        else:
-            self.set_title(title)
-        # Icon
-        if base_dir:
-            self.base_dir = base_dir
-            if icon:
-                icon_path = os.path.join(self.base_dir, icon)
-                self.set_icon_from_file(icon_path)
-
-        # window itself
-        if is_main:
-            self.connect("delete-event", gtk.main_quit)
-        if show:
-            self.show_all()
-
-
-class SillyBrowser(gtk.Window):
-    def __init__(
             self,
-            port=5000,
+            port=5051,
             home_page="",
-            title="Silly Browser",
-            icon='sgIcon',  # png without ".png" extention
+            title="Flask for desktop",
+            header_bar=None,
+            subtitle="Your app's window",
+            icon='FlaskFdIcon',  # png without ".png" extention
             is_main=False,
             server_launcher=None,
             base_dir=None,
@@ -75,9 +37,26 @@ class SillyBrowser(gtk.Window):
         super().__init__(*args, **kwargs)
         self.set_size_request(80, 60)
         self.set_default_size(800, 600)
-        self.set_title(title)
-        scroll = gtk.ScrolledWindow()
-        self.add(scroll)
+        self.scroll = gtk.ScrolledWindow()
+        self.add(self.scroll)
+        # Header Bar
+        if header_bar is not None:
+            self.header_bar = header_bar
+            for button in self.header_bar.buttons:
+                if button.name == "hb_home":
+                    button.connect("clicked", self._home)
+                if button.name == "hb_refresh":
+                    button.connect("clicked", self._refresh)
+                if button.name == "hb_previous":
+                    button.connect("clicked", self._previous)
+                if button.name == "hb_next":
+                    button.connect("clicked", self._next)
+                if button.name == "hb_find":
+                    button.connect("clicked", self._find)
+            self.set_titlebar(self.header_bar)
+        else:
+            self.set_title(title)
+        self.connect("button-press-event", self._on_button_press_event)
         self.show_all()
         self.home_page = home_page
         self.server_launcher = server_launcher
@@ -91,16 +70,14 @@ class SillyBrowser(gtk.Window):
             if icon:
                 icon_path = os.path.join(self.base_dir, icon)
                 self.set_icon_from_file(icon_path)
-        # # Jinja2 settings
-        # self.environment = create_environment()
         # Webkit2 settings
-        browserholder = wk.WebView()
-        browserholder.set_editable(False)
-        browserholder.load_uri(
+        self.web_view = SillyWebView()
+        self._home()
+        self.web_view.load_uri(
             f"http://localhost:{self.port}{self.home_page}"
             )
-        scroll.add(browserholder)
-        browserholder.show()
+        self.scroll.add(self.web_view)
+        self.web_view.show()
         if is_main:
             self.connect("delete-event", gtk.main_quit)
 
@@ -112,3 +89,30 @@ class SillyBrowser(gtk.Window):
             target=self.server_launcher.launch,
             daemon=True, name="silly_gui").start()
         gtk.main()
+
+    def _home(self, *args):
+        self.web_view.load_uri(
+            f"http://localhost:{self.port}{self.home_page}"
+            )
+
+    def _refresh(self, *args):
+        uri = self.web_view.get_uri()
+        self.web_view.load_uri(uri)
+
+    def _previous(self, *args):
+        self.web_view.go_back()
+
+    def _next(self, *args):
+        self.web_view.go_forward()
+
+    def _find(self, *args):
+        print("find")
+        self.web_view.get_inspector()
+
+    def _on_button_press_event(self, widget, event):
+        if event.type == gdk.EventType.BUTTON_PRESS:
+            print(f"event button: {event.button}")
+            if event.button == 8:
+                self._previous()
+            if event.button == 9:
+                self._next()

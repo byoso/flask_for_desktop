@@ -7,6 +7,7 @@ from flask_fd import __version__
 from flask_fd.plop.ploppers import (
     plop_main_flask_1,
     plop_main_flask_2,
+    plop_main_flask_3,
     plop_installer,
 )
 
@@ -66,8 +67,11 @@ def cmd():
         "_"*80,
         "   PLOP - provides a file in the working directory",
         ("plop 1", plop_main_flask_1, "for a single window interface"),
-        ("plop 2", plop_main_flask_2, "for customizable interface"),
-        ("plop installer", plop_installer, "provides an installer in your working directory"),
+        ("plop 2", plop_main_flask_2, "for customizable elegant interface"),
+        ("plop 3", plop_main_flask_3,
+         "customizable, uses the default browser"),
+        ("plop installer", plop_installer,
+         "provides an installer in your working directory"),
         "DOCUMENTATION",
         ("tip", tip, "a minute to read a tip, houres saved"),
     )

@@ -40,6 +40,18 @@ def plop_main_flask_2():
     _plop_icon(cwd)
 
 
+def plop_main_flask_3():
+    cwd = os.getcwd()
+    # file
+    "plop's main_flask_3.py in your cwd"
+    file = os.path.join(BASE_DIR, "flask/main_flask_fd_3.py")
+    shutil.copy(file, cwd)
+    set_executable(os.path.join(cwd, 'main_flask_fd_3.py'))
+    print(f"main_flask_3.py plopped in {cwd}")
+    # icon
+    _plop_icon(cwd)
+
+
 def plop_installer():
     "plop's main_flask_2.py in your cwd"
     file = os.path.join(BASE_DIR, "installer/installer")
