@@ -30,10 +30,15 @@ For the simpliest version:
 ```
 flask-fd plop 1
 ```
-or for a more customizable interface
+or for a more customizable and fancy interface (the best choice)
 ```
 flask-fd plop 2
 ```
+or just running the app in the default web browser
+```
+flask-fd plop 3
+```
+
 The file appear in your current working directory.
 Fill the parameters in the given file.
 

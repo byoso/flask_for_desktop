@@ -62,7 +62,15 @@ def new_window(*item):
         # If the window has a header bar:
         'header_bar': True,
         'subtitle': "Your flask app's window",
-        'hb_home': True,
+        'buttons_left': [
+            # comment those you don't want, change the order as you like
+            'hb_home',
+            'hb_refresh',
+        ],
+        'buttons_right': [
+            'hb_next',
+            'hb_previous',
+        ]
     }
 
     return fgui.window_builder(**params)

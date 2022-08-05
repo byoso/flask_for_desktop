@@ -5,9 +5,7 @@ from threading import Thread
 import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk as gtk
-from gi.repository import Gdk as gdk
 gi.require_version('WebKit2', '4.0')
-from gi.repository import WebKit2 as wk
 
 from flask_fd.gui.web import SillyWebView
 from flask_fd.gui.header_bar import SillyHeaderBar
@@ -35,14 +33,20 @@ class SillyBrowser(gtk.Window):
             *args, **kwargs
             ):
         super().__init__(*args, **kwargs)
+        self.is_main = is_main
         self.set_size_request(80, 60)
         self.set_default_size(800, 600)
         self.scroll = gtk.ScrolledWindow()
-        self.add(self.scroll)
+        self.viewport = gtk.Viewport()
+        self.viewport.add(self.scroll)
+        self.add(self.viewport)
         # Header Bar
         if header_bar is not None:
             self.header_bar = header_bar
-            for button in self.header_bar.buttons:
+            for button in [
+                    *self.header_bar.buttons_left,
+                    *self.header_bar.buttons_right,
+                    ]:
                 if button.name == "hb_home":
                     button.connect("clicked", self._home)
                 if button.name == "hb_refresh":
@@ -77,14 +81,16 @@ class SillyBrowser(gtk.Window):
             f"http://localhost:{self.port}{self.home_page}"
             )
         self.scroll.add(self.web_view)
+        self.web_view.connect("close", self._close)  # if closed from JS
+        self.web_view.connect("button-press-event", self._on_button_press_event)
         self.web_view.show()
         if is_main:
             self.connect("delete-event", gtk.main_quit)
 
         if self.server_launcher is not None:
-            self.run()
+            self._run()
 
-    def run(self):
+    def _run(self):
         Thread(
             target=self.server_launcher.launch,
             daemon=True, name="silly_gui").start()
@@ -110,9 +116,12 @@ class SillyBrowser(gtk.Window):
         self.web_view.get_inspector()
 
     def _on_button_press_event(self, widget, event):
-        if event.type == gdk.EventType.BUTTON_PRESS:
-            print(f"event button: {event.button}")
-            if event.button == 8:
-                self._previous()
-            if event.button == 9:
-                self._next()
+        if event.button == 8:
+            self._previous()
+            return True
+        if event.button == 9:
+            self._next()
+            return True
+
+    def _close(self):
+        self.destroy()
