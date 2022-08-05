@@ -50,8 +50,8 @@ CATEGORIES = [
     # "AudioVideo",
     # "Audio",
     # "Video",
-    "Development",
-    "Education",
+    # "Development",
+    # "Education",
     # "Game",
     # "Graphics",
     # "Network",
@@ -123,6 +123,7 @@ def pip_install_dependencies():
 
 dependencies = [
     'geninstaller>=1.1.1',
+    'flask-fd',
 ]
 try:
     pkg_resources.require(dependencies)

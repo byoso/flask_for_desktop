@@ -52,8 +52,7 @@ def todo():
     print("TODO")
 
 
-if __name__ == "__main__":
-
+def cmd():
     cli.route(
         "Program: Flask for desktop",
         "Make a local applications with the web framework of your choice",
@@ -72,3 +71,7 @@ if __name__ == "__main__":
         "DOCUMENTATION",
         ("tip", tip, "a minute to read a tip, houres saved"),
     )
+
+
+if __name__ == "__main__":
+    cmd()

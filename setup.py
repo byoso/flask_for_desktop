@@ -26,7 +26,7 @@ README = (HERE / "README.md").read_text()
 
 # This call to setup() does all the work
 setup(
-    name="Flask for desktop",
+    name="flask-fd",
     version=f"{__version__}",
     description=(
         "Use flask to create a desktop GUI"
@@ -59,10 +59,10 @@ setup(
     install_requires=[
         "flamewok >= 1.0.8",
     ],
-    keywords='install installer linux',
+    keywords='flask desktop gui',
     entry_points={
         "console_scripts": [
-            "geninstaller=geninstaller.cmd:cmd",
+            "flask-fd=flask_fd.cmd:cmd",
         ]
     },
     setup_requires=['wheel'],

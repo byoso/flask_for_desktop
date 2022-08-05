@@ -7,7 +7,7 @@ _All you need is to add the provided file, and Silly gui in your dependencies_
 
 
 
-## How it works in a word
+## How it works in a few words
 
 Basicaly, when the app is launched, silly-gui runs the flask server alongside a desktop window and/or the main browser of the user's system.
 
@@ -15,33 +15,33 @@ The user's experience is similar with an 'electron' application, but there, it i
 
 ## How to do it
 
-## 1. Code your flask app as usual
+### 1. Code your flask app as usual
 
 
-## 2. Installation
+### 2. Installation
 
 ```
 pip install flask-fd
 ```
 
-## 3. get a converter file
+### 3. get a converter file
 
 ```
-flask-fd plop flask 1
+flask-fd plop 1
 ```
 or (for a more customizable interface)
 ```
-flask-fd plop flask 2
+flask-fd plop 2
 ```
 The file appear in your current working directory.
 Fill the parameters in the given file.
 
-## 4. launch the app
+### 4. launch the app
 
 Execute the provided file, you'll see you flask app wrapped in a pretty
 Gtk interface
 
-## 5. get an installer (for linux)
+### 5. get an installer (for linux)
 This if you want to integrate your app in the system.
 The installer uses [Geninstaller](https://github.com/byoso/geninstaller)
 
