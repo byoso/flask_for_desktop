@@ -25,11 +25,12 @@ pip install flask-fd
 ```
 
 ### 3. get a converter file
+For the simpliest version:
 
 ```
 flask-fd plop 1
 ```
-or (for a more customizable interface)
+or for a more customizable interface
 ```
 flask-fd plop 2
 ```

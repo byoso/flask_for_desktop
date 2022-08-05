@@ -55,7 +55,7 @@ def todo():
 def cmd():
     cli.route(
         "Program: Flask for desktop",
-        "Make a local applications with the web framework of your choice",
+        "Make a local gui with the web framework flask",
         f"Version: {__version__}",
         "",
         "_"*80,

@@ -29,7 +29,7 @@ class ServerLauncher:
         pass
 
 
-def free_port(port=5001):
+def free_port(port=5051):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         s.bind(("127.0.0.1", port))

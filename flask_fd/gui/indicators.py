@@ -16,8 +16,8 @@ class Indicator:
     """
     def __init__(
             self,
-            icon='sgIcon',
-            name="sgApp",
+            icon='FlaskFdIcon',
+            name="FlaskFd_App",
             menu_items=[],
             label=None,
             is_main=True,
