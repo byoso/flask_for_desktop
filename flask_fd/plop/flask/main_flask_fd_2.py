@@ -1,40 +1,40 @@
 #! /usr/bin/env python3
 # -*- coding : utf-8 -*-
 
-import os
-
-import silly_gui.gui as sgui
-import silly_gui.launchers as sgl
-
-
-
-# MUST be in your main executable, some paths will be relative to this.
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-# PORT = sgl.free_port(5050)  # bug: doesn't work with django, why ?
-PORT = 5051
-# =====================================================================
-# !!!! SET YOUR OWN PATH HERE !!!!
-# setting a virtual environment is prudent, but could work without
-env_path = os.path.join(BASE_DIR, "env/bin/activate")
-launch_command = f"""
-source {env_path}
-./djangoapp/manage.py runserver {PORT}
+"""Customizable converter file, with or without:
+- indicator in the system tray
+- the main window
+- opening the app in the default browser
 """
 
 
-# set the server launcher (here for django)
+import os
+
+import flask_fd.gui as fgui
+import flask_fd.launchers as fgl
+
+from flaskapp import main as flask_app  # use your own names here
+
+# MUST be in your main executable, some paths will be relative to this.
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+PORT = fgl.free_port()
+# =====================================================================
+
+
+# set the server launcher (here for flask)
 def launch_function():
-    os.system(launch_command)
+    flask_app.app.run(debug=False, port=PORT)
 
 
 # create the launcher object
-server_launcher = sgl.ServerLauncher(
+server_launcher = fgl.ServerLauncher(
     port=PORT,
-    home_page="",
+    home_page="/",
     launcher=launch_function)
 
 
 # Here are some callbacks examples =====================================
+# called from the indicator in the systray
 def callback_function_1(*args):
     print("Some example function")
 
@@ -45,7 +45,7 @@ def callback_function_2(*args):
 
 def open_default(*args):
     """Open the application in the default browser of the system"""
-    sgui.open_in_main_browser(port=PORT, home_page=server_launcher.home_page)
+    fgui.open_in_main_browser(port=PORT, home_page="/")
 
 
 # Building the main interface =========================================
@@ -54,11 +54,11 @@ def open_default(*args):
 
 def new_browser(*args):
     """Creates a browser"""
-    browser = sgui.SillyBrowser(
+    browser = fgui.SillyBrowser(
         base_dir=BASE_DIR,  # required for correct icon behaviour
         port=PORT,
-        home_page=server_launcher.home_page,
-        icon='sgIcon',
+        home_page="/",
+        icon='FlaskFdIcon',
         is_main=False,  # closing a main widget closes the entire application
         )
     return browser
@@ -67,9 +67,9 @@ def new_browser(*args):
 # Indicator
 
 def new_indicator():
-    indicator = sgui.Indicator(
+    indicator = fgui.Indicator(
         base_dir=BASE_DIR,  # required for correct icon behaviour
-        icon='sgIcon',  # required
+        icon='FlaskFdIcon',  # required
         label='label example',  # str or None
         menu_items=[
             # ("main window", main_window),

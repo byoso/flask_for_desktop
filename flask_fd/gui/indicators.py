@@ -7,7 +7,7 @@ from gi.repository import Gtk
 gi.require_version('AppIndicator3', '0.1')
 from gi.repository import AppIndicator3
 
-from silly_gui.gui.menus import create_menu_item
+from flask_fd.gui.menus import create_menu_item
 
 
 class Indicator:

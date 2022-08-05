@@ -5,3 +5,4 @@ ignore_*
 flaskapp/
 djangoapp/
 *.sqlite3
+TODO.txt

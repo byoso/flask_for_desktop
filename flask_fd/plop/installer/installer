@@ -19,7 +19,55 @@ independent.
 import os
 import sys
 
+# =========== THERE WE GO ===================================
+
+# PLACE THIS FILE IN THE ROOT DIRECTORY OF YOUR PROJECT
+
+# =====================================================================
+# ======= Complete this informations ==================================
+
+# choose a good name, do NOT use underscores here
+NAME = "MyFlaskForDesktopApp"
+# short description (optionnal), a few words would be fine
+DESCRIPTION = "A short description"
+# The main executable file of the application
+# The path is relative to this directory (BASE_DIR defined below)
+EXECUTABLE = "main_flask_fd_1.py"
+# The icon that your system will use (optionnal, but so much better)
+# The path is relative to this directory (BASE_DIR defined below)
+ICON = "FlaskFdIcon"
+# Does your application needs to appear within a terminal ?
+# (usually, a graphical application doesn't need a terminal)
+TERMINAL = False
+
+# uncomment the categories in which you want your app to appear in (optionnal).
+# if needed, read this:
+# freedesktop.org doc for categories
+# https://specifications.freedesktop.org/menu-spec/latest/apa.html#main-category-registry
+# additionnal categories
+# https://specifications.freedesktop.org/menu-spec/latest/apas02.html
+CATEGORIES = [
+    # "AudioVideo",
+    # "Audio",
+    # "Video",
+    "Development",
+    "Education",
+    # "Game",
+    # "Graphics",
+    # "Network",
+    # "Office",
+    # "Science",
+    # "Settings",
+    # "System",
+    # "Utility",
+]
+
+# you're done ! :)
+
+# = do not touch what is following unless you know what you're doing ==
+# =====================================================================
 # ============ DO NOT TOUCH THIS DEPENDENCIES CHECK ============
+
 
 # dependencies check
 version = sys.version_info  # user's python version
@@ -86,53 +134,6 @@ except pkg_resources.DistributionNotFound:  # python3.6/3.9
 
 from flamewok.cli import cli
 
-# =========== THERE WE GO ===================================
-
-# PLACE THIS FILE IN THE ROOT DIRECTORY OF YOUR PROJECT
-
-# =====================================================================
-# ======= Complete this informations ==================================
-
-# choose a good name, do NOT use underscores here
-NAME = "fake"
-# short description (optionnal), a few words would be fine
-DESCRIPTION = "A short description"
-# The main executable file of the application
-# The path is relative to this directory (BASE_DIR defined below)
-EXECUTABLE = "main_django_1.py"
-# The icon that your system will use (optionnal, but so much better)
-# The path is relative to this directory (BASE_DIR defined below)
-ICON = "sgIcon"
-# Does your application needs to appear within a terminal ?
-# (usually, a graphical application doesn't need a terminal)
-TERMINAL = True
-
-# uncomment the categories in which you want your app to appear in (optionnal).
-# if needed, read this:
-# freedesktop.org doc for categories
-# https://specifications.freedesktop.org/menu-spec/latest/apa.html#main-category-registry
-# additionnal categories
-# https://specifications.freedesktop.org/menu-spec/latest/apas02.html
-CATEGORIES = [
-    # "AudioVideo",
-    # "Audio",
-    # "Video",
-    # "Development",
-    # "Education",
-    # "Game",
-    # "Graphics",
-    # "Network",
-    # "Office",
-    # "Science",
-    # "Settings",
-    # "System",
-    # "Utility",
-]
-
-# you're done ! :)
-
-# = do not touch what is following unless you know what you're doing ==
-# =====================================================================
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 

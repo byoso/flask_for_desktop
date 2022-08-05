@@ -1,37 +1,51 @@
 ![silly-gui-icon](https://i.goopics.net/tou3jl.png)
-# WIP
+
+# Flask for desktop
+
+_Build a desktop application with flask._
+_All you need is to add the provided file, and Silly gui in your dependencies_
 
 
-# Silly Gui
 
-If you are a web developper, then you are a desktop developper too.
+## How it works in a word
 
-Silly Gui allows to simply shell any web application to convert it
-into a desktop application.
+Basicaly, when the app is launched, silly-gui runs the flask server alongside a desktop window and/or the main browser of the user's system.
+
+The user's experience is similar with an 'electron' application, but there, it is python inside instead of JS.
+
+## How to do it
+
+## 1. Code your flask app as usual
 
 
-# Why should I use it instead of PyGObject or tkinter or else ?
+## 2. Installation
 
-Simply to save some time if you already know flask or django.
+```
+pip install flask-fd
+```
 
+## 3. get a converter file
 
-# How it works
+```
+flask-fd plop flask 1
+```
+or (for a more customizable interface)
+```
+flask-fd plop flask 2
+```
+The file appear in your current working directory.
+Fill the parameters in the given file.
 
-Basicaly, when the app is launched, silly-gui runs the server needed
-by your web application localy and hidden, you can then show your app
-in a desktop window and/or the main browser of the user's system.
+## 4. launch the app
 
-The user's experience is similar with an 'electron' application, but there
-it is python inside instead of JS.
+Execute the provided file, you'll see you flask app wrapped in a pretty
+Gtk interface
 
-# Developpment notes
+## 5. get an installer (for linux)
+This if you want to integrate your app in the system.
+The installer uses [Geninstaller](https://github.com/byoso/geninstaller)
 
-## Flask
-Works fine as it is
-
-## Django
-Still experimental.
-Works, but it is prudent to include a virtual environment with all dependencies
-included.
-For some reason the free port detection doesn't work.
-(Why ? if you know the answer, i'd be glad to know and fix it)
+```
+flask-fd plop installer
+```
+Fill the parameters in the installer.
