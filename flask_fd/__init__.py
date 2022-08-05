@@ -1,4 +1,4 @@
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
-# check the installer version too !!
+# check the installer's version too !!

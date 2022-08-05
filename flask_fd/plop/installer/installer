@@ -113,7 +113,10 @@ import pkg_resources
 def pip_install_dependencies():
     os.system(
         f"python{version[0]}.{version[1]} "
-        "-m pip install --upgrade geninstaller")
+        "-m pip install -U geninstaller")
+    os.system(
+        f"python{version[0]}.{version[1]} "
+        "-m pip install -U flask-fd")
     print(
         "\x1b[0;30;32m"  # text is green
         "Dependencies successfully installed."
@@ -123,7 +126,7 @@ def pip_install_dependencies():
 
 dependencies = [
     'geninstaller>=1.1.1',
-    'flask-fd>=1.0.1',
+    'flask-fd>=1.0.2',
 ]
 try:
     pkg_resources.require(dependencies)
