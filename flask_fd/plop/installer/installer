@@ -123,7 +123,7 @@ def pip_install_dependencies():
 
 dependencies = [
     'geninstaller>=1.1.1',
-    'flask-fd>=1.0.0',
+    'flask-fd>=1.0.1',
 ]
 try:
     pkg_resources.require(dependencies)
