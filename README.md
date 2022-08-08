@@ -3,13 +3,13 @@
 # Flask for desktop
 
 _Build a desktop application with flask._
-_All you need is to add the provided file, and Silly gui in your dependencies_
+_All you need is to add the provided file, and Flask for desktop in your dependencies_
 
 
 
 ## How it works in a few words
 
-Basicaly, when the app is launched, silly-gui runs the flask server alongside a desktop window and/or the main browser of the user's system.
+Basicaly, when the app is launched, Flask for desktop runs the flask server alongside a desktop window and/or the main browser of the user's system.
 
 The user's experience is similar with an 'electron' application, but there, it is python inside instead of JS.
 
@@ -30,7 +30,7 @@ For the simpliest version:
 ```
 flask-fd plop 1
 ```
-or for a more customizable and fancy interface (the best choice)
+or for a more customizable and fancy interface, very easy (the best choice)
 ```
 flask-fd plop 2
 ```
