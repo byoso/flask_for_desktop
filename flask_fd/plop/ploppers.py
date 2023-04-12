@@ -16,46 +16,23 @@ def _plop_icon(cwd):
     print("Generic icon provided too")
 
 
-def plop_main_flask_1():
+def plop_converter():
     cwd = os.getcwd()
     # file
-    "plop's main_flask_1.py in your cwd"
-    file = os.path.join(BASE_DIR, "flask/main_flask_fd_1.py")
+    file = os.path.join(BASE_DIR, "flask/flask_for_desktop.py")
     shutil.copy(file, cwd)
-    set_executable(os.path.join(cwd, 'main_flask_fd_1.py'))
-    print(f"main_flask_1.py plopped in {cwd}")
+    set_executable(os.path.join(cwd, 'flask_for_desktop.py'))
+    print(f"flask_for_desktop.py and an icon just plopped in {cwd} :)")
     # icon
     _plop_icon(cwd)
 
 
-def plop_main_flask_2():
+def plop_starter():
     cwd = os.getcwd()
     # file
-    "plop's main_flask_2.py in your cwd"
-    file = os.path.join(BASE_DIR, "flask/main_flask_fd_2.py")
+    file = os.path.join(BASE_DIR, "flask/flask_for_desktop.py")
     shutil.copy(file, cwd)
-    set_executable(os.path.join(cwd, 'main_flask_fd_2.py'))
-    print(f"main_flask_2.py plopped in {cwd}")
+    set_executable(os.path.join(cwd, 'flask_for_desktop.py'))
     # icon
     _plop_icon(cwd)
-
-
-def plop_main_flask_3():
-    cwd = os.getcwd()
-    # file
-    "plop's main_flask_3.py in your cwd"
-    file = os.path.join(BASE_DIR, "flask/main_flask_fd_3.py")
-    shutil.copy(file, cwd)
-    set_executable(os.path.join(cwd, 'main_flask_fd_3.py'))
-    print(f"main_flask_3.py plopped in {cwd}")
-    # icon
-    _plop_icon(cwd)
-
-
-def plop_installer():
-    "plop's main_flask_2.py in your cwd"
-    file = os.path.join(BASE_DIR, "installer/installer")
-    cwd = os.getcwd()
-    shutil.copy(file, cwd)
-    set_executable(os.path.join(cwd, 'installer'))
-    print(f"installer plopped in {cwd}")
+    # flask project

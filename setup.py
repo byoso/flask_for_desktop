@@ -29,7 +29,7 @@ setup(
     name="flask-fd",
     version=f"{__version__}",
     description=(
-        "Use flask to create a desktop GUI"
+        "Use flask to create desktop applications"
         ),
     long_description=README,
     long_description_content_type="text/markdown",
@@ -58,6 +58,8 @@ setup(
     python_requires='>=3.6',
     install_requires=[
         "flamewok >= 1.0.8",
+        "flask-sqlalchemy",
+        "flask-migrate",
     ],
     keywords='flask desktop gui',
     entry_points={

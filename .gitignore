@@ -1,5 +1,14 @@
-env/
+venv/
+.venv/
 __pycache__/
+
+# dev files
+/templates/
+/flaskapp/
+test.py
+instance/
+migrations/
+
 *.pyc
 ignore_*
 flaskapp/
