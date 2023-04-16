@@ -17,9 +17,10 @@ def _plop_icon(cwd):
 
 
 def plop_converter():
+    print("Flask-fd converter file ploped !")
     cwd = os.getcwd()
     # file
-    file = os.path.join(BASE_DIR, "flask/flask_for_desktop.py")
+    file = os.path.join(BASE_DIR, "flask/starter/flask_for_desktop.py")
     shutil.copy(file, cwd)
     set_executable(os.path.join(cwd, 'flask_for_desktop.py'))
     print(f"flask_for_desktop.py and an icon just plopped in {cwd} :)")
@@ -29,10 +30,11 @@ def plop_converter():
 
 def plop_starter():
     cwd = os.getcwd()
-    # file
-    file = os.path.join(BASE_DIR, "flask/flask_for_desktop.py")
-    shutil.copy(file, cwd)
-    set_executable(os.path.join(cwd, 'flask_for_desktop.py'))
-    # icon
-    _plop_icon(cwd)
-    # flask project
+    # copy starter folders
+    folder = os.path.join(BASE_DIR, "flask/starter")
+    if os.path.exists(os.path.join(cwd, "flask_fd_app")):
+        print("Aborted: flask_fd_app already exists in the current directory")
+    else:
+        shutil.copytree(folder, os.path.join(cwd, "flask_fd_app"))
+        set_executable(os.path.join(cwd, 'flask_fd_app/flask_for_desktop.py'))
+        print("Flask-fd starter kit ploped !")
