@@ -57,7 +57,7 @@ setup(
     package_data={'': ['FlaskFdIcon', 'installer']},
     python_requires='>=3.6',
     install_requires=[
-        "flamewok >= 1.0.8",
+        "flamewok >= 1.2.1",
         "flask-sqlalchemy",
         "flask-migrate",
     ],
