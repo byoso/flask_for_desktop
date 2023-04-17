@@ -24,34 +24,19 @@ The user's experience is similar with an 'electron' application, but there, it i
 pip install flask-fd
 ```
 
-### 3. get a converter file
-For the simpliest version:
+### 3. get the files
+If you start your app from scratch:
 
+```sh
+flask-fd plop starter
 ```
-flask-fd plop 1
+If you've already done your app and just want to convert it:
+
+```sh
+flask-fd plop converter
 ```
-or for a more customizable and fancy interface, very easy (the best choice)
-```
-flask-fd plop 2
-```
-or just running the app in the default web browser
-```
-flask-fd plop 3
-```
+This one will give you a file that you'll just have to configure following
+the steps in the comments.
 
 The file appear in your current working directory.
 Fill the parameters in the given file.
-
-### 4. launch the app
-
-Execute the provided file, you'll see you flask app wrapped in a pretty
-Gtk interface
-
-### 5. get an installer (for linux)
-This if you want to integrate your app in the system.
-The installer uses [Geninstaller](https://github.com/byoso/geninstaller)
-
-```
-flask-fd plop installer
-```
-Fill the parameters in the installer.
