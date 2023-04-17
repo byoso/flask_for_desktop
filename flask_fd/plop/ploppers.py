@@ -35,6 +35,8 @@ def plop_starter():
     if os.path.exists(os.path.join(cwd, "flask_fd_app")):
         print("Aborted: flask_fd_app already exists in the current directory")
     else:
+        # icon
+        _plop_icon(cwd)
         shutil.copytree(folder, os.path.join(cwd, "flask_fd_app"))
         set_executable(os.path.join(cwd, 'flask_fd_app/flask_for_desktop.py'))
         print("Flask-fd starter kit ploped !")
