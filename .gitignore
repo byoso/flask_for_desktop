@@ -3,8 +3,6 @@ venv/
 __pycache__/
 
 # dev files
-/templates/
-/flaskapp/
 test.py
 instance/
 migrations/

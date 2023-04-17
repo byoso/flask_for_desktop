@@ -11,8 +11,8 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 
 def _plop_icon(cwd):
-    file2 = os.path.join(BASE_DIR, "icon/FlaskFdIcon")
-    shutil.copy(file2, cwd)
+    file = os.path.join(BASE_DIR, "flask/starter/FlaskFdIcon")
+    shutil.copy(file, cwd)
     print("Generic icon provided too")
 
 

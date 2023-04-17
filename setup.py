@@ -60,7 +60,7 @@ setup(
         "flask_fd.plop.flask.starter.flaskapp.app.static.js",
         ],
     # include_package_data=True,
-    package_data={'': ['FlaskFdIcon', 'installer']},
+    package_data={'': ['FlaskFdIcon', '*.html']},
     python_requires='>=3.6',
     install_requires=[
         "flamewok >= 1.2.1",
