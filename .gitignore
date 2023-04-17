@@ -6,10 +6,10 @@ __pycache__/
 test.py
 instance/
 migrations/
+/flaskapp/
 
 *.pyc
 ignore_*
-flaskapp/
 *.sqlite3
 TODO.txt
 build/
